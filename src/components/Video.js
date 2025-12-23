@@ -2,6 +2,7 @@
 import { useRef, useEffect, useState } from 'react';
 import styles from '../styles/Video.module.css';
 import Image from 'next/image';
+import Footer from './Footer';
 
 export default function Video() {
   const videoRef = useRef(null);
@@ -58,6 +59,7 @@ export default function Video() {
       
       {/* Footer section - black footer */}
       <div className={styles.videoFooter}>
+        <Footer />
       </div>
     </div>
   );

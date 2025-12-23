@@ -1,6 +1,36 @@
+@font-face {
+  font-family: 'VCR OSD Mono';
+  src: url('/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hornet Display';
+  src: url('/fonts/HornetDisplay-Regular.woff2') format('woff2'),
+       url('/fonts/HornetDisplay-Regular.woff') format('woff'),
+       url('/fonts/HornetDisplay-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hornet Display';
+  src: url('/fonts/HornetDisplay-Bold.woff2') format('woff2'),
+       url('/fonts/HornetDisplay-Bold.woff') format('woff'),
+       url('/fonts/HornetDisplay-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-title: 'VCR OSD Mono', monospace;
+  --font-body: 'Hornet Display', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,7 +49,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -33,6 +63,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1 {
+  font-family: var(--font-title);
 }
 
 @media (prefers-color-scheme: dark) {
