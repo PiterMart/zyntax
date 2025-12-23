@@ -18,6 +18,11 @@ export default function Footer() {
                 Instagram
               </a>
             </li>
+            <li>
+              <a href="https://www.tiktok.com/@zyntax_x?_r=1&_t=ZM-92TRxI9BrSu" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                TikTok
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -54,6 +59,11 @@ export default function Footer() {
             <li>
               <a href="https://zyntax.artstation.com/" target="_blank" rel="noopener noreferrer" className={styles.link}>
                 ArtStation
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/PiterMart" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                GitHub
               </a>
             </li>
           </ul>
