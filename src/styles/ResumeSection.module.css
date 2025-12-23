@@ -1,0 +1,53 @@
+.resumeSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  color: white;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
+
+.paragraph {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .resumeSection {
+    padding: 3rem 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .content {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .paragraph {
+    margin-bottom: 1rem;
+  }
+}
+

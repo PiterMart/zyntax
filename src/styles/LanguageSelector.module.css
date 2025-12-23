@@ -1,0 +1,37 @@
+.languageSelector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 3000;
+}
+
+.languageButton {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.languageButton:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+.languageButton.active {
+  opacity: 1;
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+}
+

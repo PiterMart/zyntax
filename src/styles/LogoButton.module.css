@@ -1,0 +1,44 @@
+.logoButton {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  min-width: 500px;
+  height: 500px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1500;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.logoButton:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.logoButton:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.logoImage {
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Hide button when UI overlay is open */
+.logoButton.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .logoButton {
+    width: 300px;
+    min-width: 300px;
+    height: 300px;
+  }
+}
+

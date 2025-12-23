@@ -1,66 +1,62 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { useState, useEffect } from 'react';
+import { LanguageProvider } from '../contexts/LanguageContext';
+import LoadingScreen from '../components/LoadingScreen';
+import Video from '../components/Video';
+import LogoButton from '../components/LogoButton';
+import UIOverlay from '../components/UIOverlay';
+import LanguageSelector from '../components/LanguageSelector';
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [contentLoaded, setContentLoaded] = useState(false);
+  const [isUIOpen, setIsUIOpen] = useState(false);
+
+  useEffect(() => {
+    // Simulate initial content loading
+    const timer = setTimeout(() => {
+      setContentLoaded(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  const handleLogoClick = () => {
+    setIsUIOpen(true);
+  };
+
+  const handleCloseUI = () => {
+    setIsUIOpen(false);
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+    <LanguageProvider>
+      <main>
+        {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} isLoading={!contentLoaded} />}
+
+        <div style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.5s ease' }}>
+          {/* Video background with footer */}
+          <Video />
+          
+          {/* Language Selector - visible when overlay is closed */}
+          {!isUIOpen && (
+            <div style={{ position: 'fixed', top: '2rem', left: '2rem', zIndex: 1501 }}>
+              <LanguageSelector />
+            </div>
+          )}
+          
+          {/* Logo button to open UI overlay */}
+          {!isUIOpen && <LogoButton onClick={handleLogoClick} />}
+          
+          {/* UI Overlay on first 100vh */}
+          <UIOverlay isOpen={isUIOpen} onClose={handleCloseUI} />
         </div>
       </main>
-    </div>
+    </LanguageProvider>
   );
 }
