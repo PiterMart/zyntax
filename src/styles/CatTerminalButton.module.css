@@ -1,0 +1,50 @@
+.catButton {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1500;
+  transition: transform 0.2s ease;
+}
+
+.catButton:hover {
+  transform: scale(1.1);
+}
+
+.catButton:active {
+  transform: scale(0.95);
+}
+
+.catSprite {
+  width: 120px;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+@media (max-width: 768px) {
+  .catButton {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .catSprite {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catButton {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .catSprite {
+    width: 60px;
+  }
+}

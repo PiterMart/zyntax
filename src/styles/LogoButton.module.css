@@ -1,5 +1,5 @@
 .logoButton {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -33,12 +33,34 @@
   pointer-events: none;
 }
 
-/* Mobile responsiveness */
+/* Smooth pulsating scale animation (mobile) */
+@keyframes logoPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+/* Mobile: bigger logo + pulsating effect */
 @media (max-width: 768px) {
   .logoButton {
-    width: 300px;
-    min-width: 300px;
-    height: 300px;
+    width: 420px;
+    min-width: 420px;
+    height: 420px;
+    animation: logoPulse 2.5s ease-in-out infinite;
+  }
+
+  .logoButton:hover {
+    animation: none;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+
+  .logoButton:active {
+    animation: none;
+    transform: translate(-50%, -50%) scale(0.98);
   }
 }
 

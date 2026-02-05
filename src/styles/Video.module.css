@@ -12,6 +12,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  max-height: 100vh;
 }
 
 .fallbackImage {
@@ -30,6 +31,24 @@
 
 .backgroundVideo.videoLoaded {
   opacity: 1;
+}
+
+/* 3D Works Invite + Hexagon Development: side by side when space allows */
+.inviteRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 1000px) {
+  .inviteRow {
+    flex-direction: row;
+    gap: 2rem;
+  }
 }
 
 .videoFooter {

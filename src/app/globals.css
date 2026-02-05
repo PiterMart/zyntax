@@ -26,18 +26,20 @@
   font-display: swap;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-title: 'VCR OSD Mono', monospace;
-  --font-body: 'Hornet Display', sans-serif;
+@font-face {
+  font-family: 'ECLIPSE SickAgain';
+  src: url('/ECLIPSE-SickAgain.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #000000;
+  --foreground: #ededed;
+  --font-title: 'VCR OSD Mono', monospace;
+  --font-body: 'Hornet Display', sans-serif;
+  --font-eclipse: 'ECLIPSE SickAgain', sans-serif;
 }
 
 html,
@@ -49,6 +51,11 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
+  /* background-image: url('/windows.jpg'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

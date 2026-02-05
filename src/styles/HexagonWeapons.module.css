@@ -1,0 +1,161 @@
+.wrapper {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  margin: 0 auto;
+  max-width: 25rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 2px dotted #231f20;
+  background: white;
+}
+
+/* Desktop: draggable */
+@media (min-width: 769px) {
+  .container.containerDesktop {
+    user-select: none;
+    cursor: move;
+  }
+
+  .container.containerDesktop.dragging {
+    cursor: grabbing;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  cursor: inherit;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.headline {
+  font-family: var(--font-title, "VCR OSD Mono", monospace);
+  font-weight: bold;
+  text-align: left;
+  text-transform: uppercase;
+  padding-left: 0.75rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.headlineLead {
+  font-size: 2.25rem;
+  display: block;
+  color: #231f20;
+}
+
+.headlineRest {
+  font-size: 1.25rem;
+  color: #6b6b6b;
+}
+
+.clickButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin-left: 0.75rem;
+  background-color: #231f20;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #231f20;
+  font-family: var(--font-title, "VCR OSD Mono", monospace);
+  text-transform: uppercase;
+  transition: background-color 0.2s ease;
+  animation: scalePulse 0.6s ease-in-out infinite;
+}
+
+.clickButton:hover {
+  background-color: #3d3839;
+}
+
+.clickButton:active {
+  transform: scale(0.95);
+}
+
+@keyframes scalePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+/* Mobile: bigger title, centered button */
+@media (max-width: 768px) {
+  .headlineLead {
+    font-size: 2.85rem;
+  }
+
+  .headlineRest {
+    font-size: 1.45rem;
+  }
+
+  .clickButton {
+    align-self: center;
+    margin-left: 0;
+  }
+}
+
+/* Leave-site confirmation modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalBox {
+  background: #1a1a1a;
+  border: 1px solid white;
+  padding: 1.5rem;
+  max-width: 22rem;
+  width: 100%;
+}
+
+.modalMessage {
+  font-family: "Hornet Display", sans-serif;
+  color: white;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0 1.25rem 0;
+}
+
+.modalActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.modalButton {
+  font-family: "Hornet Display", sans-serif;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.modalButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

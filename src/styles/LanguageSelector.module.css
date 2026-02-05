@@ -3,6 +3,7 @@
   align-items: center;
   gap: 0.5rem;
   z-index: 3000;
+  pointer-events: auto;
 }
 
 .languageButton {
@@ -16,6 +17,9 @@
   transition: opacity 0.3s ease, transform 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  pointer-events: auto;
+  position: relative;
+  z-index: 3001;
 }
 
 .languageButton:hover {

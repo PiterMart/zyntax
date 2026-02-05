@@ -1,0 +1,292 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 3100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.galleryMessage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.25rem;
+  pointer-events: auto;
+  z-index: 3102;
+}
+
+.galleryContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.closeAllButton {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #c0c0c0;
+  border: 2px outset #c0c0c0;
+  color: black;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3101;
+  pointer-events: auto;
+  transition: all 0.1s;
+}
+
+.closeAllButton:hover {
+  background: #dfdfdf;
+}
+
+.closeAllButton:active {
+  border: 2px inset #c0c0c0;
+}
+
+.navigation {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 1001;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.counter {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  background: none;
+  padding: 8px 16px;
+}
+
+.imageContainer {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  background: #000000;
+  border: 2px outset #c0c0c0;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer:active {
+  cursor: grabbing;
+}
+
+.titleBar {
+  background: black;
+  color: white;
+  padding: 2px 4px;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 18px;
+  cursor: default;
+}
+
+.titleText {
+  flex: 1;
+  text-align: center;
+}
+
+.closeButton98 {
+  background: #c0c0c0;
+  border: 1px outset #c0c0c0;
+  color: black;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  width: 16px;
+  height: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+}
+
+.closeButton98:active {
+  border: 1px inset #c0c0c0;
+}
+
+.imageWrapper {
+  background: rgb(0, 0, 0);
+  padding: 1px;
+}
+
+.imageCloseButton {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+}
+
+.galleryImage {
+  object-fit: contain;
+  pointer-events: none;
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 400px;
+  max-height: 300px;
+}
+
+/* Lightbox */
+.lightboxBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 3200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.lightboxClose {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3201;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.lightboxClose:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.lightboxContent {
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+}
+
+.lightboxImage {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navigation {
+    top: 10px;
+    gap: 15px;
+  }
+  
+  .navButton {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+  
+  .counter {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
+  .closeButton {
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .closeAllButton {
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
+}

@@ -2,9 +2,13 @@
 import { useRef, useEffect, useState } from 'react';
 import styles from '../styles/Video.module.css';
 import Image from 'next/image';
-import Footer from './Footer';
+import Banner from './Banner';
+import Section1 from './Section1';
+import WorksInvite from './3dWorksInvite';
+import HexagonDevelopment from './hexagondevelopment';
+import HexagonWeapons from './HexagonWeapons';
 
-export default function Video() {
+export default function Video({ children }) {
   const videoRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
@@ -55,11 +59,22 @@ export default function Video() {
         >
           <source src="/Zytnax_knight_duomodimilano FINAL0000.mp4" type="video/mp4" />
         </video>
+        
+        {/* Overlay and interactive elements go here */}
+        {children}
       </div>
+
+      {/* Banner overlapping bottom of video */}
+      <Banner />
+
+      {/* Section: What can I help you with? */}
+      {/* <Section1 /> */}
       
-      {/* Footer section - black footer */}
-      <div className={styles.videoFooter}>
-        <Footer />
+      {/* 3D Works Invite + Hexagon Development + Hexagon Weapons */}
+      <div className={styles.inviteRow}>
+        <WorksInvite />
+        <HexagonDevelopment />
+        <HexagonWeapons />
       </div>
     </div>
   );

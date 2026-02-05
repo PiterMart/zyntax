@@ -1,0 +1,145 @@
+/* Match ImageGallery.module.css Windows-style look */
+
+.popupOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1999;
+}
+
+.popup {
+  position: fixed;
+  z-index: 2000;
+  background: #000000;
+  border: 2px outset #c0c0c0;
+  min-width: 200px;
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+.popupTitleBar {
+  background: black;
+  color: white;
+  padding: 2px 4px;
+  font-size: 11px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 18px;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.popupTitleText {
+  flex: 1;
+  text-align: center;
+}
+
+.popupBody {
+  background: #000000;
+  padding: 4px 0;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.popupItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'MS Sans Serif', sans-serif;
+  color: #ffffff;
+}
+
+.popupItem:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.popupItem:active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.popupItemIcon {
+  width: 24px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Desktop: position near anchor */
+@media (min-width: 769px) {
+  .popup {
+    left: var(--popup-x, 200px);
+    top: var(--popup-y, 200px);
+  }
+}
+
+/* Mobile: center popup and prevent overflow */
+@media (max-width: 768px) {
+  .popup {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100vw - 2rem);
+    max-height: 70vh;
+  }
+}
+
+/* Desktop folder area: prevent overflow on mobile */
+.desktopFolderContainer {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.desktopFolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  color: #ffffff;
+  text-align: center;
+  font-family: 'VCR OSD Mono', monospace;
+  user-select: none;
+  cursor: grab;
+}
+
+.desktopFolder:active {
+  cursor: grabbing;
+}
+
+.desktopFolderIcon {
+  width: 120px;
+  height: 96px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.desktopFolderLabel {
+  font-size: 1rem;
+  max-width: 140px;
+  font-family: 'VCR OSD Mono', monospace;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.desktopFolder {
+  position: absolute;
+}
