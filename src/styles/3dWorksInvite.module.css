@@ -5,7 +5,6 @@
 .title {
   font-family: var(--font-title, 'VCR OSD Mono', monospace);
   font-size: 1.5rem;
-  font-weight: 400;
   color: white;
   text-transform: lowercase;
   text-align: center;
@@ -31,7 +30,6 @@
 .headline {
   font-family: var(--font-title, "VCR OSD Mono", monospace);
   font-size: 3rem;
-  font-weight: bold;
   color: white;
   text-align: left;
   text-transform: uppercase;
@@ -43,10 +41,10 @@
 
 .typewriterText {
   position: absolute;
+  font-family:  'Hornet Display', sans-serif;
   top: 0.5rem;
   left: 0.5rem;
   color: white;
-  font-family: var(--font-title, 'VCR OSD Mono', monospace);
   font-size: 1.35rem;
   text-transform: uppercase;
   z-index: 3;
@@ -126,7 +124,7 @@
   transition: all 0.3s ease;
   text-align: center;
   cursor: pointer;
-  font-family: var(--font-title, 'VCR OSD Mono', monospace);
+  font-family: 'VCR OSD Mono', monospace;
   pointer-events: auto;
   text-transform: uppercase;
 }

@@ -46,11 +46,11 @@
 .headline {
   font-family: var(--font-title, "VCR OSD Mono", monospace);
   font-size: 3rem;
-  font-weight: bold;
   color: white;
   text-align: left;
   text-transform: uppercase;
   padding-left: 0.75rem;
+  line-height: 3rem
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;

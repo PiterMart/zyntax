@@ -5,6 +5,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import TerminalWindow from '../../components/TerminalWindow';
 import CatTerminalButton from '../../components/CatTerminalButton';
 import ImageGallery from '../../components/imagegallery/ImageGallery';
+import Cmd from '../../components/visual/Cmd';
 import styles from '../../styles/FolderPopup.module.css';
 
 const works3DContent = {
@@ -182,8 +183,12 @@ export default function Works3DPage() {
     <main style={{ 
       minHeight: '100vh', 
       background: '#000000',
-      position: 'relative'
+      position: 'relative',
+      overflow: 'hidden'
     }}>
+      {/* Background console effect behind desktop folders */}
+      <Cmd />
+
       {/* Terminal Window */}
       {isTerminalVisible && (
         <TerminalWindow 

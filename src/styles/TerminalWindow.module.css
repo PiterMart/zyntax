@@ -28,7 +28,7 @@
   right: 0.75rem;
   background: transparent;
   border: 1px solid #3c3c3c;
-  color: #cccccc;
+  color: var(--accent);
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
@@ -44,8 +44,8 @@
 }
 
 .closeButton:hover {
-  background: #dda0dd;
-  border-color: #dda0dd;
+  background: var(--accent);
+  border-color: var(--accent);
   color: #0c0c0c;
 }
 
@@ -65,14 +65,14 @@
 }
 
 .promptText {
-  color: #dda0dd;
+  color: var(--accent);
   font-weight: bold;
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 .title {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 00;
   margin: 0 0 1rem 0;
   text-transform: uppercase;
   letter-spacing: 1px;

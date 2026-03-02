@@ -37,7 +37,9 @@
 :root {
   --background: #000000;
   --foreground: #ededed;
-  --font-title: 'VCR OSD Mono', monospace;
+  --accent: #5900ff;
+  --font-title: serif;
+  /* --font-title: 'VCR OSD Mono', monospace; */
   --font-body: 'Hornet Display', sans-serif;
   --font-eclipse: 'ECLIPSE SickAgain', sans-serif;
 }
@@ -72,8 +74,14 @@ a {
   text-decoration: none;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-title);
+  font-weight: 200;
 }
 
 @media (prefers-color-scheme: dark) {
