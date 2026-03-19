@@ -3,10 +3,9 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
 import styles from '../styles/Banner.module.css';
 
-const TILE_WIDTH = 1100;
-
 export default function Banner() {
   const stripRef = useRef(null);
+  const [tileWidth, setTileWidth] = useState(0);
   const [translateX, setTranslateX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const startXRef = useRef(0);
@@ -15,8 +14,28 @@ export default function Banner() {
   const clampTranslate = useCallback((value) => {
     let v = value;
     if (v > 0) return 0;
-    while (v < -TILE_WIDTH) v += TILE_WIDTH;
+    if (tileWidth > 0) {
+      while (v <= -tileWidth) v += tileWidth;
+    }
     return v;
+  }, [tileWidth]);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (stripRef.current && stripRef.current.children[0]) {
+        const width = stripRef.current.children[0].offsetWidth;
+        if (width > 0) setTileWidth(width);
+      }
+    };
+    
+    updateWidth();
+    const interval = setInterval(updateWidth, 500);
+    window.addEventListener('resize', updateWidth);
+    
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', updateWidth);
+    };
   }, []);
 
   const handlePointerDown = useCallback(
@@ -75,21 +94,21 @@ export default function Banner() {
         {/* Three copies for seamless infinite loop on desktop; position recycles at tile boundary */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/banner spikes.png"
+          src="/bannergothwindowszyntax.png"
           alt=""
           className={styles.bannerImage}
           draggable={false}
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/banner spikes.png"
+          src="/bannergothwindowszyntax.png"
           alt=""
           className={styles.bannerImage}
           draggable={false}
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/banner spikes.png"
+          src="/bannergothwindowszyntax.png"
           alt=""
           className={styles.bannerImage}
           draggable={false}

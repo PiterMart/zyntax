@@ -5,6 +5,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import Video from '../components/Video';
 import LogoButton from '../components/LogoButton';
 import UIOverlay from '../components/UIOverlay';
+import Homepage from '../components/Homepage';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -73,7 +74,7 @@ export default function Home() {
    P7            :B~  ^BYJJJJJJJJJY! ^55~         ^YP! .5Y             .55. :~:^^:~::!:7  .^J::~^ : 
                          ..........  .               .                        ..   ..      .^ .  
     
-    developed by Zyntax, Pedro martingaste and https://www.instagram.com/zyntax_xx/
+    developed by Zyntax, Pedro martingaste https://www.instagram.com/zyntax_xx/
     `);
   }, []);
 
@@ -86,10 +87,11 @@ export default function Home() {
         <Video>
           {/* Logo button to open UI overlay */}
           {!isUIOpen && <LogoButton onClick={handleLogoClick} />}
-          
+
           {/* UI Overlay on first 100vh */}
           <UIOverlay isOpen={isUIOpen} onClose={handleCloseUI} />
         </Video>
+        <Homepage />
       </div>
     </main>
   );

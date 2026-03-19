@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useDraggable } from '../hooks/useDraggable';
 import styles from '../styles/3dWorksInvite.module.css';
 
 const words = ['modeling', 'texturing', 'rendering', 'retopology'];
@@ -15,16 +16,16 @@ const buttonText = {
 export default function WorksInvite() {
   const { language } = useLanguage();
   const videoRef = useRef(null);
-  const containerRef = useRef(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [displayLines, setDisplayLines] = useState([]);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [phase, setPhase] = useState('typing'); // 'typing', 'deleting'
   const [typingSpeed, setTypingSpeed] = useState(100);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const dragStartRef = useRef({ x: 0, y: 0 });
   const waitTimerRef = useRef(null);
+
+  const containerRef = useDraggable({
+    dragClassName: styles.dragging
+  });
 
   useEffect(() => {
     const handleAnimation = () => {
@@ -100,77 +101,16 @@ export default function WorksInvite() {
     setVideoLoaded(false);
   };
 
-  const handleMouseDown = (e) => {
-    // Don't drag if clicking on button or link
-    const target = e.target;
-    // Check if clicking on the button link or inside button container
-    if (target.tagName === 'A' || target.closest('a')) {
-      return;
-    }
-    
-    e.preventDefault();
-    setIsDragging(true);
-    // Store the initial mouse position and current element position
-    dragStartRef.current = {
-      mouseX: e.clientX,
-      mouseY: e.clientY,
-      elementX: position.x,
-      elementY: position.y
-    };
-  };
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!isDragging) return;
-      
-      // Calculate new position based on mouse movement
-      const deltaX = e.clientX - dragStartRef.current.mouseX;
-      const deltaY = e.clientY - dragStartRef.current.mouseY;
-      
-      const newX = dragStartRef.current.elementX + deltaX;
-      const newY = dragStartRef.current.elementY + deltaY;
-      
-      // Constrain to viewport
-      const elementWidth = containerRef.current?.offsetWidth || 0;
-      const elementHeight = containerRef.current?.offsetHeight || 0;
-      const maxX = (window.innerWidth - elementWidth) / 2;
-      const maxY = (window.innerHeight - elementHeight) / 2;
-      
-      setPosition({
-        x: Math.max(-maxX, Math.min(newX, maxX)),
-        y: Math.max(-maxY, Math.min(newY, maxY))
-      });
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [isDragging, position]);
-
-  const containerStyle = {
-    transform: `translate(${position.x}px, ${position.y}px)`,
-    cursor: isDragging ? 'grabbing' : 'move'
-  };
+  // Dragging logic is optimally handled by useDraggable hook without triggering React re-renders.
 
   return (
     <div className={styles.wrapper}>
       <section 
         ref={containerRef}
-        className={`${styles.container} ${isDragging ? styles.dragging : ''}`}
-        style={containerStyle}
-        onMouseDown={handleMouseDown}
+        className={styles.container}
       >
         <div className={styles.headline}>3D SOLUTIONS</div>
-        <div className={styles.videoWrapper} onMouseDown={handleMouseDown}>
+        <div className={styles.videoWrapper}>
         <video
           ref={videoRef}
           autoPlay

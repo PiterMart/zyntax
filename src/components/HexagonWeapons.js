@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useDraggable } from "../hooks/useDraggable";
 import styles from "../styles/HexagonWeapons.module.css";
 
 const headlineLeadText = {
@@ -33,12 +34,13 @@ const DESKTOP_BREAKPOINT = 769;
 
 export default function HexagonWeapons() {
   const { language } = useLanguage();
-  const containerRef = useRef(null);
-  const dragStartRef = useRef({ mouseX: 0, mouseY: 0, elementX: 0, elementY: 0 });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [showLeaveModal, setShowLeaveModal] = useState(false);
+
+  const containerRef = useDraggable({
+    disabled: !isDesktop,
+    dragClassName: styles.dragging
+  });
 
   useEffect(() => {
     const mq = window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`);
@@ -48,59 +50,7 @@ export default function HexagonWeapons() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  const handleMouseDown = (e) => {
-    if (!isDesktop) return;
-    if (e.target.tagName === "A" || e.target.closest("a")) return;
-    e.preventDefault();
-    setIsDragging(true);
-    dragStartRef.current = {
-      mouseX: e.clientX,
-      mouseY: e.clientY,
-      elementX: position.x,
-      elementY: position.y,
-    };
-  };
-
-  useEffect(() => {
-    if (!isDesktop) return;
-
-    const handleMouseMove = (e) => {
-      if (!isDragging) return;
-      const deltaX = e.clientX - dragStartRef.current.mouseX;
-      const deltaY = e.clientY - dragStartRef.current.mouseY;
-      const newX = dragStartRef.current.elementX + deltaX;
-      const newY = dragStartRef.current.elementY + deltaY;
-
-      const elementWidth = containerRef.current?.offsetWidth || 0;
-      const elementHeight = containerRef.current?.offsetHeight || 0;
-      const maxX = (window.innerWidth - elementWidth) / 2;
-      const maxY = (window.innerHeight - elementHeight) / 2;
-
-      setPosition({
-        x: Math.max(-maxX, Math.min(newX, maxX)),
-        y: Math.max(-maxY, Math.min(newY, maxY)),
-      });
-    };
-
-    const handleMouseUp = () => setIsDragging(false);
-
-    if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-      return () => {
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-      };
-    }
-  }, [isDesktop, isDragging]);
-
-  const containerStyle =
-    isDesktop
-      ? {
-          transform: `translate(${position.x}px, ${position.y}px)`,
-          cursor: isDragging ? "grabbing" : "move",
-        }
-      : undefined;
+  // Dragging logic is optimally handled by useDraggable hook without triggering React re-renders.
 
   const handleClickHere = (e) => {
     e.preventDefault();
@@ -116,9 +66,7 @@ export default function HexagonWeapons() {
     <div className={styles.wrapper}>
       <section
         ref={containerRef}
-        className={`${styles.container} ${isDesktop ? styles.containerDesktop : ""} ${isDragging ? styles.dragging : ""}`}
-        style={containerStyle}
-        onMouseDown={handleMouseDown}
+        className={`${styles.container} ${isDesktop ? styles.containerDesktop : ""}`}
       >
         <div className={styles.content}>
           <div className={styles.headline}>

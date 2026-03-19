@@ -4,9 +4,6 @@ import styles from '../styles/Video.module.css';
 import Image from 'next/image';
 import Banner from './Banner';
 import Section1 from './Section1';
-import WorksInvite from './3dWorksInvite';
-import HexagonDevelopment from './hexagondevelopment';
-import HexagonWeapons from './HexagonWeapons';
 
 export default function Video({ children }) {
   const videoRef = useRef(null);
@@ -14,7 +11,7 @@ export default function Video({ children }) {
 
   useEffect(() => {
     const mainVideo = videoRef.current;
-    
+
     if (mainVideo) {
       mainVideo.playbackRate = 1.0;
       const handleCanPlay = () => {
@@ -24,10 +21,10 @@ export default function Video({ children }) {
         console.error('Error loading video, displaying fallback image.');
         setVideoLoaded(false);
       };
-      
+
       mainVideo.addEventListener('canplaythrough', handleCanPlay);
       mainVideo.addEventListener('error', handleError);
-      
+
       return () => {
         mainVideo.removeEventListener('canplaythrough', handleCanPlay);
         mainVideo.removeEventListener('error', handleError);
@@ -41,7 +38,7 @@ export default function Video({ children }) {
       <div className={styles.videoContainer}>
         {!videoLoaded && (
           <Image
-            src="/Zytnax_knight_duomodimilano3.png"
+            src="/Zytnax_knight_duomodimilano32.jpg"
             alt="Zyntax Knight"
             fill
             className={styles.fallbackImage}
@@ -59,23 +56,17 @@ export default function Video({ children }) {
         >
           <source src="/Zytnax_knight_duomodimilano FINAL0000.mp4" type="video/mp4" />
         </video>
-        
+
         {/* Overlay and interactive elements go here */}
         {children}
       </div>
 
       {/* Banner overlapping bottom of video */}
-      <Banner />
+      {/* <Banner /> */}
 
       {/* Section: What can I help you with? */}
       {/* <Section1 /> */}
-      
-      {/* 3D Works Invite + Hexagon Development + Hexagon Weapons */}
-      <div className={styles.inviteRow}>
-        <WorksInvite />
-        <HexagonDevelopment />
-        <HexagonWeapons />
-      </div>
+
     </div>
   );
 }

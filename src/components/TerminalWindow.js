@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useDraggable } from '../hooks/useDraggable';
 import styles from '../styles/TerminalWindow.module.css';
 
 export default function TerminalWindow({ content, onClose, showCloseButton = true, prompt = 'C:\\>' }) {
@@ -14,10 +15,11 @@ export default function TerminalWindow({ content, onClose, showCloseButton = tru
   const [displayedTitle, setDisplayedTitle] = useState('');
   const [displayedContent, setDisplayedContent] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const dragStartRef = useRef({ x: 0, y: 0 });
-  const sectionRef = useRef(null);
+  const sectionRef = useDraggable({
+    cancelSelector: `.${styles.closeButton}, .${styles.content}, .${styles.title}`,
+    dragClassName: styles.dragging,
+    centerOffset: true
+  });
   const titleIntervalRef = useRef(null);
   const contentIntervalRef = useRef(null);
 
@@ -109,74 +111,12 @@ export default function TerminalWindow({ content, onClose, showCloseButton = tru
 
   const paragraphs = displayedContent.split('\n\n').filter(p => p.length > 0);
 
-  const handleMouseDown = (e) => {
-    // Don't drag if clicking on close button or content text
-    const target = e.target;
-    if (target.closest(`.${styles.closeButton}`)) {
-      return;
-    }
-    if (target.closest(`.${styles.content}`) || target.closest(`.${styles.title}`)) {
-      return; // Don't drag if clicking on content
-    }
-    
-    setIsDragging(true);
-    // Store the initial mouse position and current element position
-    dragStartRef.current = {
-      mouseX: e.clientX,
-      mouseY: e.clientY,
-      elementX: position.x,
-      elementY: position.y
-    };
-  };
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!isDragging) return;
-      
-      // Calculate new position based on mouse movement
-      const deltaX = e.clientX - dragStartRef.current.mouseX;
-      const deltaY = e.clientY - dragStartRef.current.mouseY;
-      
-      const newX = dragStartRef.current.elementX + deltaX;
-      const newY = dragStartRef.current.elementY + deltaY;
-      
-      // Constrain to viewport (accounting for centered positioning)
-      const elementWidth = sectionRef.current?.offsetWidth || 0;
-      const elementHeight = sectionRef.current?.offsetHeight || 0;
-      const maxX = (window.innerWidth - elementWidth) / 2;
-      const maxY = (window.innerHeight - elementHeight) / 2;
-      
-      setPosition({
-        x: Math.max(-maxX, Math.min(newX, maxX)),
-        y: Math.max(-maxY, Math.min(newY, maxY))
-      });
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
-
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [isDragging]);
-
-  const sectionStyle = {
-    transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px))`,
-    cursor: isDragging ? 'grabbing' : 'move'
-  };
+  // Dragging logic is optimally handled by useDraggable hook without triggering React re-renders.
 
   return (
     <section 
       ref={sectionRef} 
-      className={`${styles.terminalWindow} ${isDragging ? styles.dragging : ''}`}
-      style={sectionStyle}
-      onMouseDown={handleMouseDown}
+      className={styles.terminalWindow}
     >
       {showCloseButton && onClose && (
         <button className={styles.closeButton} onClick={onClose} aria-label="Close">

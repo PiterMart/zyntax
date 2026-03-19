@@ -27,18 +27,15 @@
 
 .bannerImage {
   display: block;
-  width: 1100px;
-  min-width: 1100px;
-  height: auto;
-  object-fit: cover;
+  height: 6rem;
+  width: auto;
+  object-fit: contain;
   object-position: left center;
   flex-shrink: 0;
   pointer-events: none;
 }
 
-.bannerImage + .bannerImage {
-  margin-left: -100px;
-}
+
 
 /* Tablet: align with video edge */
 @media (min-width: 768px) {

@@ -6,7 +6,7 @@ export default function LogoButton({ onClick }) {
   return (
     <button className={styles.logoButton} onClick={onClick}>
       <Image
-        src="/LOGO ZYNTAX SICK.png"
+        src="/LOGO ZYNTAX SICK2.png"
         alt="Zyntax Logo"
         fill
         className={styles.logoImage}

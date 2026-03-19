@@ -1,0 +1,36 @@
+.homepageWrapper {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  margin-top: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  z-index: 10;
+}
+
+.bannerImage {
+  width: 100vw;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin-bottom: -0.5rem;
+}
+
+.inviteRow {
+  flex: 1;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+@media (min-width: 1000px) {
+  .inviteRow {
+    flex-direction: row;
+  }
+}
