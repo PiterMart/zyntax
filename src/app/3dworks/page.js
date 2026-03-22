@@ -5,6 +5,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import TerminalWindow from '../../components/TerminalWindow';
 import CatTerminalButton from '../../components/CatTerminalButton';
 import ImageGallery from '../../components/imagegallery/ImageGallery';
+import ImageDisplay from '../../components/ImageDisplay';
 import Cmd from '../../components/visual/Cmd';
 import styles from '../../styles/FolderPopup.module.css';
 
@@ -32,7 +33,9 @@ const DESKTOP_HEIGHT = '70vh';
 const FOLDER_DISPLAY_NAMES = {
   GDMS: 'Guardian de mis sueños',
   angelica: 'Angelica',
-  eternalglory: 'Eternal Glory'
+  eternalglory: 'Eternal Glory',
+  leechsword: '[L33CH-SWORD]',
+  knightfields: '[K.NG*GHT]'
 };
 
 function folderDisplayName(path) {
@@ -43,7 +46,7 @@ function folderDisplayName(path) {
 
 export default function Works3DPage() {
   const { language } = useLanguage();
-  const [isTerminalVisible, setIsTerminalVisible] = useState(true);
+  const [isTerminalVisible, setIsTerminalVisible] = useState(false);
   const [desktopFolders, setDesktopFolders] = useState([]);
   const [folderPositions, setFolderPositions] = useState({});
   const [openFolderPath, setOpenFolderPath] = useState(null);
@@ -290,6 +293,9 @@ export default function Works3DPage() {
         onClose={() => setOpenFolderPath(null)}
         folderPath={openFolderPath}
       />
+
+      {/* Cycling Image Display covering 3DWORKS folder */}
+      <ImageDisplay />
 
       {/* YouTube Video Grid Section */}
       <div style={{

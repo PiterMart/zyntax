@@ -3,8 +3,15 @@ import styles from '../styles/Footer.module.css';
 
 export default function Footer() {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footerContent}>
+    <>
+      <img
+        src="/bannergothwindowszyntax.png"
+        alt="Zyntax Gothic Windows"
+        className={styles.bannerImage}
+        draggable={false}
+      />
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
         <div className={styles.footerSection}>
           <h3 className={styles.sectionTitle}>Social</h3>
           <ul className={styles.linkList}>
@@ -70,6 +77,7 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
 

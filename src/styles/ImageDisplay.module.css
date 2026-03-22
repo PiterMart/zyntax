@@ -1,0 +1,45 @@
+.imageDisplayContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.displayImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fadeIn {
+  animation: fadeInAnim 1s ease forwards;
+}
+
+.fadeOut {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeOutAnim 1s ease forwards;
+  z-index: 2;
+}
+
+@keyframes fadeInAnim {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOutAnim {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

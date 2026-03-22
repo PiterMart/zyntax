@@ -137,7 +137,12 @@
   font-size: 1rem;
   max-width: 140px;
   font-family: 'VCR OSD Mono', monospace;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0px  2px 4px rgba(0,0,0,0.8);
 }
 
 .desktopFolder {

@@ -17,7 +17,7 @@ export default function Homepage() {
       />
       <div className={styles.inviteRow}>
         <WorksInvite />
-        <HexagonDevelopment />
+        {/* <HexagonDevelopment /> */}
         <HexagonWeapons />
       </div>
     </section>

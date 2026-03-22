@@ -33,7 +33,7 @@ export default function WorksInvite() {
         // Typing words line by line
         const currentWord = words[currentWordIndex];
         const currentLine = displayLines[currentWordIndex] || '';
-        
+
         if (currentLine.length < currentWord.length) {
           // Still typing current word
           const newLines = [...displayLines];
@@ -62,7 +62,7 @@ export default function WorksInvite() {
         if (displayLines.length > 0) {
           const newLines = [...displayLines];
           const lastLineIndex = newLines.length - 1;
-          
+
           if (newLines[lastLineIndex].length > 0) {
             // Delete from last line
             newLines[lastLineIndex] = newLines[lastLineIndex].substring(0, newLines[lastLineIndex].length - 1);
@@ -70,7 +70,7 @@ export default function WorksInvite() {
             // Remove empty line
             newLines.pop();
           }
-          
+
           setDisplayLines(newLines);
           setTypingSpeed(50);
         } else {
@@ -105,44 +105,44 @@ export default function WorksInvite() {
 
   return (
     <div className={styles.wrapper}>
-      <section 
+      <section
         ref={containerRef}
         className={styles.container}
       >
-        <div className={styles.headline}>3D SOLUTIONS</div>
+        <div className={styles.headline}>[3D-W.RKS]</div>
         <div className={styles.videoWrapper}>
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className={styles.video}
-          onCanPlayThrough={handleCanPlay}
-          onError={handleError}
-        >
-          <source src="/ZyntaxKnightloop_1.mp4" type="video/mp4" />
-        </video>
-        
-        {/* Typewriter text overlapping video */}
-        <div className={styles.typewriterText}>
-          {displayLines.map((line, index) => (
-            <div key={index}>
-              {line}
-              {index === displayLines.length - 1 && <span className={styles.cursor}>|</span>}
-            </div>
-          ))}
-          {displayLines.length === 0 && <span className={styles.cursor}>|</span>}
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={styles.video}
+            onCanPlayThrough={handleCanPlay}
+            onError={handleError}
+          >
+            <source src="/3DWORKS/knightfields/ZyntaxKnightloop_1.mp4" type="video/mp4" />
+          </video>
+
+          {/* Typewriter text overlapping video */}
+          <div className={styles.typewriterText}>
+            {displayLines.map((line, index) => (
+              <div key={index}>
+                {line}
+                {index === displayLines.length - 1 && <span className={styles.cursor}>|</span>}
+              </div>
+            ))}
+            {displayLines.length === 0 && <span className={styles.cursor}>|</span>}
+          </div>
+
+          {/* Button overlay in the middle */}
+          <div className={styles.buttonContainer}>
+            <Link href="/3dworks" className={styles.button}>
+              {buttonText[language] || buttonText.en}
+            </Link>
+          </div>
         </div>
-        
-        {/* Button overlay in the middle */}
-        <div className={styles.buttonContainer}>
-          <Link href="/3dworks" className={styles.button}>
-            {buttonText[language] || buttonText.en}
-          </Link>
-        </div>
-      </div>
-    </section>
+      </section>
     </div>
   );
 }
